@@ -1,8 +1,11 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  // Permitir imágenes de Supabase Storage
+  // Exportación estática para Electron
+  output: 'export',
+  // Permitir imágenes de Supabase Storage y quitar optimización por defecto
   images: {
+    unoptimized: true,
     remotePatterns: [
       {
         protocol: 'https',
@@ -16,11 +19,6 @@ const nextConfig: NextConfig = {
   // Configurar Turbopack (Next.js 16 default)
   turbopack: {
     root: '.',
-  },
-  // Ocultar el indicador "N" de desarrollo en la pantalla
-  devIndicators: {
-    appIsrStatus: false,
-    buildActivity: false,
   },
 };
 
