@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   page: {
     backgroundColor: D.blanco,
     paddingTop: 0,
-    paddingBottom: 85,   // espacio para footer fijo
+    paddingBottom: 100,   // espacio para footer fijo
     paddingHorizontal: 0,
     fontSize: 7.5,
     fontFamily: 'Helvetica',
@@ -177,6 +177,18 @@ const styles = StyleSheet.create({
   },
   condText: { fontSize: 7, color: D.gris, lineHeight: 1.65 },
 
+  /* ── CUENTAS BANCARIAS ── */
+  bankBox: {
+    width: 250,
+    backgroundColor: '#dcdcdc',
+    borderWidth: 1.5,
+    borderColor: D.negro,
+    padding: 6,
+  },
+  bankLine: { fontSize: 7.5, fontFamily: 'Helvetica-Bold', color: D.negro, marginBottom: 3 },
+  bankIndent: { marginLeft: 30, fontSize: 7.5, fontFamily: 'Helvetica-Bold', color: D.negro, marginBottom: 3 },
+  bankIndentDet: { marginLeft: 20, marginTop: 4, fontSize: 7.5, fontFamily: 'Helvetica-Bold', color: D.negro, marginBottom: 3 },
+
   /* ── FIRMA ── */
   firmaSection: { flexDirection: 'row', justifyContent: 'flex-end', marginBottom: 8 },
   firmaBox: { alignItems: 'center', width: 150 },
@@ -189,7 +201,7 @@ const styles = StyleSheet.create({
   footer: {
     position: 'absolute',
     bottom: 0, left: 0, right: 0,
-    height: 85,
+    height: 100,
     backgroundColor: D.blanco,
     borderTopWidth: 2, borderTopColor: D.rojo,
     flexDirection: 'row',
@@ -369,13 +381,24 @@ export default function CotizacionPDF({
             </View>
           )}
 
-          {/* ── CONDICIONES ── */}
-          {(condicionesVenta || config.condiciones_venta) && (
-            <View style={styles.condSection}>
-              <Text style={styles.condTitle}>CONDICIONES DE VENTA</Text>
-              <Text style={styles.condText}>{condicionesVenta || config.condiciones_venta}</Text>
+          {/* ── CONDICIONES Y CUENTAS BANCARIAS ── */}
+          <View style={{ flexDirection: 'row', justifyContent: 'space-between', marginTop: 20, marginBottom: 10, gap: 15 }}>
+            <View style={{ flex: 1 }}>
+              {(condicionesVenta || config.condiciones_venta) && (
+                <View>
+                  <Text style={styles.condTitle}>CONDICIONES DE VENTA</Text>
+                  <Text style={styles.condText}>{condicionesVenta || config.condiciones_venta}</Text>
+                </View>
+              )}
             </View>
-          )}
+
+            <View style={styles.bankBox}>
+              <Text style={styles.bankLine}>• Cuenta Corriente Banco Continental - BBVA:</Text>
+              <Text style={styles.bankIndent}>Soles: 0011-0183-0100150847</Text>
+              <Text style={styles.bankIndent}>CCI: 011 - 183 - 000100150847 - 10</Text>
+              <Text style={styles.bankIndentDet}>CUENTA DE DETRACCION BANCO DE LA NACION: 00-066-113825</Text>
+            </View>
+          </View>
 
           {/* ── FIRMA ── */}
           {(configImages.firma || config.emisor_nombre) && (
@@ -410,7 +433,7 @@ export default function CotizacionPDF({
           <View style={{ flexDirection: 'column', alignItems: 'flex-end', gap: 6 }}>
             {/* Logo Principal arriba del texto */}
             {configImages.logoPrincipal && (
-              <Image src={configImages.logoPrincipal} style={{ width: 110, height: 35, objectFit: 'contain', objectPosition: 'right' }} />
+              <Image src={configImages.logoPrincipal} style={{ width: 140, height: 48, objectFit: 'contain', objectPosition: 'right', marginBottom: 2 }} />
             )}
 
             <View style={styles.footerInfo}>
