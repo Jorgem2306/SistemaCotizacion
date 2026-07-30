@@ -137,11 +137,11 @@ export default function CotizacionesPage() {
   const clientesFiltrados = clientes.filter(c =>
     c.razon_social.toLowerCase().includes(clienteSearch.toLowerCase()) ||
     (c.ruc ?? '').includes(clienteSearch)
-  );
+  ).slice(0, 25);
 
   const prodsFiltrados = productos.filter(p =>
     p.nombre.toLowerCase().includes(prodSearch.toLowerCase())
-  );
+  ).slice(0, 25);
 
   /** Convierte imágenes y abre la vista previa */
   async function openPreview() {

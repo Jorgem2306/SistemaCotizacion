@@ -2,6 +2,40 @@
 
 /* ─── VARIABLES DIMATEX PERU ────────────────────────────────── */
 :root {
+  /* LIGHT MODE (Default) */
+  --bg-primary: #f1f5f9;
+  --bg-secondary: #ffffff;
+  --bg-card: #ffffff;
+  --bg-elevated: #f8fafc;
+  --border-color: #e2e8f0;
+  --text-primary: #0f172a;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
+
+  /* DIMATEX palette (Accents remain vivid) */
+  --accent-red: #E62A2B;
+  --accent-red-dark: #c02020;
+  --accent-orange: #EC6935;
+  --accent-yellow: #FDE306;
+  --accent-emerald: #10b981;
+  --accent-rose: #f43f5e;
+
+  /* aliases */
+  --accent-blue: #E62A2B;
+  --accent-blue-hover: #c02020;
+  --accent-indigo: #EC6935;
+
+  --gradient-header: linear-gradient(135deg, #ffffff 0%, #f8fafc 100%);
+  --shadow-card: 0 4px 20px rgba(0,0,0,0.05);
+  --shadow-glow: 0 0 20px rgba(230,42,43,0.15);
+  --radius-sm: 8px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --sidebar-width: 240px;
+}
+
+[data-theme="dark"] {
   --bg-primary: #0c0c0e;
   --bg-secondary: #111115;
   --bg-card: #18181e;
@@ -11,27 +45,9 @@
   --text-secondary: #9999b3;
   --text-muted: #5a5a7a;
 
-  /* DIMATEX palette */
-  --accent-red: #E62A2B;
-  --accent-red-dark: #c02020;
-  --accent-orange: #EC6935;
-  --accent-yellow: #FDE306;
-  --accent-emerald: #10b981;
-  --accent-rose: #f43f5e;
-
-  /* aliases para compatibilidad */
-  --accent-blue: #E62A2B;
-  --accent-blue-hover: #c02020;
-  --accent-indigo: #EC6935;
-
   --gradient-header: linear-gradient(135deg, #1a0a0a 0%, #200d0d 50%, #0c0c0e 100%);
   --shadow-card: 0 4px 24px rgba(0,0,0,0.5);
   --shadow-glow: 0 0 20px rgba(230,42,43,0.18);
-  --radius-sm: 8px;
-  --radius-md: 12px;
-  --radius-lg: 16px;
-  --radius-xl: 24px;
-  --sidebar-width: 240px;
 }
 
 /* ─── RESET & BASE ──────────────────────────────────────────── */
@@ -44,6 +60,11 @@ body {
   line-height: 1.6;
   min-height: 100vh;
   overflow-x: hidden;
+}
+
+/* Ocultar el indicador de desarrollo de Next.js de inmediato */
+nextjs-portal {
+  display: none !important;
 }
 
 /* ─── LAYOUT ────────────────────────────────────────────────── */
@@ -70,9 +91,9 @@ body {
   z-index: 100; overflow-y: auto;
 }
 .sidebar-logo {
-  padding: 20px;
+  padding: 24px 20px;
   border-bottom: 1px solid var(--border-color);
-  background: linear-gradient(135deg, rgba(230,42,43,0.12), rgba(236,105,53,0.06));
+  background: var(--bg-secondary);
 }
 .sidebar-logo h2 { font-size: 14px; font-weight: 800; color: var(--text-primary); letter-spacing: 0.08em; text-transform: uppercase; }
 .sidebar-logo p  { font-size: 10px; color: var(--text-muted); margin-top: 2px; letter-spacing: 0.05em; }

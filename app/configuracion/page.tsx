@@ -165,15 +165,13 @@ export default function ConfiguracionPage() {
       <ToastContainer />
 
       <div className="page-header">
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'flex-start' }}>
-          <div>
-            <h1>Configuración</h1>
-            <p>Personaliza logos, firma, datos de empresa y condiciones de venta para el PDF</p>
-          </div>
-          <button className="btn btn-primary btn-lg" onClick={handleSave} disabled={saving}>
-            {saving ? <><div className="spinner" style={{ width: 16, height: 16, borderWidth: 2 }} /> Guardando...</> : <><Save size={16} /> Guardar Todo</>}
-          </button>
+        <div>
+          <h1>Configuración</h1>
+          <p>Personaliza logos, firma, datos de empresa y condiciones de venta para el PDF</p>
         </div>
+        <button className="btn btn-primary btn-lg" onClick={handleSave} disabled={saving}>
+          {saving ? <><div className="spinner" style={{ width: 16, height: 16, borderWidth: 2 }} /> Guardando...</> : <><Save size={16} /> Guardar Todo</>}
+        </button>
       </div>
 
       <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 24 }}>

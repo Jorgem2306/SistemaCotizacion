@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   page: {
     backgroundColor: D.blanco,
     paddingTop: 0,
-    paddingBottom: 52,   // espacio para footer fijo
+    paddingBottom: 85,   // espacio para footer fijo
     paddingHorizontal: 0,
     fontSize: 7.5,
     fontFamily: 'Helvetica',
@@ -169,7 +169,7 @@ const styles = StyleSheet.create({
   totalValue: { color: D.blanco, fontSize: 14, fontFamily: 'Helvetica-Bold' },
 
   /* ── CONDICIONES ── */
-  condSection: { marginBottom: 10 },
+  condSection: { marginTop: 20, marginBottom: 10 },
   condTitle: {
     fontSize: 7, fontFamily: 'Helvetica-Bold', color: D.rojo,
     textTransform: 'uppercase', letterSpacing: 0.8, marginBottom: 4,
@@ -189,7 +189,7 @@ const styles = StyleSheet.create({
   footer: {
     position: 'absolute',
     bottom: 0, left: 0, right: 0,
-    height: 52,
+    height: 85,
     backgroundColor: D.blanco,
     borderTopWidth: 2, borderTopColor: D.rojo,
     flexDirection: 'row',
@@ -406,24 +406,31 @@ export default function CotizacionPDF({
             )}
           </View>
 
-          {/* Datos de empresa */}
-          <View style={styles.footerInfo}>
-            {config.empresa_ruc && (
-              <Text style={styles.footerText}>
-                <Text style={styles.footerBold}>RUC: </Text>{config.empresa_ruc}
-              </Text>
+          {/* Datos de empresa y Logo Principal */}
+          <View style={{ flexDirection: 'column', alignItems: 'flex-end', gap: 6 }}>
+            {/* Logo Principal arriba del texto */}
+            {configImages.logoPrincipal && (
+              <Image src={configImages.logoPrincipal} style={{ width: 110, height: 35, objectFit: 'contain', objectPosition: 'right' }} />
             )}
-            {config.empresa_direccion && (
-              <Text style={styles.footerText}>{config.empresa_direccion}</Text>
-            )}
-            {config.empresa_telefono && (
-              <Text style={styles.footerText}>
-                <Text style={styles.footerBold}>Tel: </Text>{config.empresa_telefono}
-              </Text>
-            )}
-            {config.empresa_correo && (
-              <Text style={styles.footerText}>{config.empresa_correo}</Text>
-            )}
+
+            <View style={styles.footerInfo}>
+              {config.empresa_ruc && (
+                <Text style={styles.footerText}>
+                  <Text style={styles.footerBold}>RUC: </Text>{config.empresa_ruc}
+                </Text>
+              )}
+              {config.empresa_direccion && (
+                <Text style={styles.footerText}>{config.empresa_direccion}</Text>
+              )}
+              {config.empresa_telefono && (
+                <Text style={styles.footerText}>
+                  <Text style={styles.footerBold}>Tel: </Text>{config.empresa_telefono}
+                </Text>
+              )}
+              {config.empresa_correo && (
+                <Text style={styles.footerText}>{config.empresa_correo}</Text>
+              )}
+            </View>
           </View>
         </View>
 

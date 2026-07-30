@@ -14,7 +14,14 @@ const nextConfig: NextConfig = {
   // Excluir @react-pdf/renderer del bundle SSR (sólo cliente)
   serverExternalPackages: ['@react-pdf/renderer'],
   // Configurar Turbopack (Next.js 16 default)
-  turbopack: {},
+  turbopack: {
+    root: '.',
+  },
+  // Ocultar el indicador "N" de desarrollo en la pantalla
+  devIndicators: {
+    appIsrStatus: false,
+    buildActivity: false,
+  },
 };
 
 export default nextConfig;
