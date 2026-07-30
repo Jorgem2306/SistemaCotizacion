@@ -234,26 +234,6 @@ export default function ConfiguracionPage() {
           </div>
         </div>
 
-        {/* ─── CONDICIONES DE VENTA ─── */}
-        <div className="card">
-          <div className="card-header"><h2>📋 Condiciones de Venta</h2></div>
-          <div className="card-body">
-            <div className="form-group">
-              <label className="form-label">Texto de condiciones (aparece en el PDF)</label>
-              <textarea
-                className="form-input"
-                value={form.condiciones_venta}
-                onChange={e => setForm(f => ({ ...f, condiciones_venta: e.target.value }))}
-                rows={10}
-                placeholder={"Días de entrega: 20 días hábiles\nLugar de entrega: Almacén del cliente\nForma de pago: 50% adelanto / 50% contra entrega\nPrecios incluyen IGV (18%)\nValidez de la cotización: 15 días"}
-              />
-              <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 4 }}>
-                Se preservan los saltos de línea tal como aparecen aquí.
-              </div>
-            </div>
-          </div>
-        </div>
-
         {/* ─── LOGOS DEL PIE ─── */}
         <div className="card">
           <div className="card-header"><h2>🏷️ Logos del Pie de Página</h2></div>

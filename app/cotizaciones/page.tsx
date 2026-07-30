@@ -37,7 +37,9 @@ export default function CotizacionesPage() {
   const [numero, setNumero] = useState('');
   const [fecha, setFecha] = useState(new Date().toISOString().split('T')[0]);
   const [observaciones, setObservaciones] = useState('');
-  const [condicionesVenta, setCondicionesVenta] = useState('');
+  const [condicionesVenta, setCondicionesVenta] = useState(
+    "Días de entrega: 20 días hábiles\nLugar de entrega: Almacén del cliente\nForma de pago: 50% adelanto / 50% contra entrega\nPrecios incluyen IGV (18%)\nValidez de la cotización: 15 días"
+  );
   const [items, setItems] = useState<CotizacionItemForm[]>([]);
   const [precios, setPrecios] = useState<Record<string, number>>({}); // producto_id → precio especial
 
@@ -512,17 +514,20 @@ export default function CotizacionesPage() {
 
           {/* Condiciones de Venta editables */}
           <div className="card">
-            <div className="card-header"><h2>Condiciones de Venta</h2></div>
+            <div className="card-header"><h2>📋 Condiciones de Venta</h2></div>
             <div className="card-body">
-              <textarea
-                className="form-input"
-                value={condicionesVenta}
-                onChange={e => setCondicionesVenta(e.target.value)}
-                placeholder="Ej: 50% adelanto, 50% contra entrega. Tiempo de entrega: 15 días hábiles..."
-                rows={5}
-              />
-              <p style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 6 }}>
-                Estas condiciones aparecerán en el PDF de la cotización. Si se deja vacío, se usarán las condiciones predeterminadas de Configuración.
+              <div className="form-group" style={{ marginBottom: 8 }}>
+                <label className="form-label">TEXTO DE CONDICIONES (APARECE EN EL PDF)</label>
+                <textarea
+                  className="form-input"
+                  value={condicionesVenta}
+                  onChange={e => setCondicionesVenta(e.target.value)}
+                  placeholder="Ej: Días de entrega: 20 días hábiles&#10;Lugar de entrega: Almacén del cliente..."
+                  rows={7}
+                />
+              </div>
+              <p style={{ fontSize: 11, color: 'var(--text-muted)' }}>
+                Se preservan los saltos de línea tal como aparecen aquí. Puedes editarlas para esta cotización.
               </p>
             </div>
           </div>
