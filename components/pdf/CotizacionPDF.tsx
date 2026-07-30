@@ -40,7 +40,7 @@ const styles = StyleSheet.create({
   },
   headerLeft: {
     width: 190,
-    backgroundColor: '#fafafa',
+    backgroundColor: D.blanco,
     padding: 10,
     justifyContent: 'center',
     alignItems: 'center',

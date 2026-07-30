@@ -5,7 +5,7 @@ export const dynamic = 'force-dynamic';
 import { useEffect, useState, useCallback } from 'react';
 import { supabase } from '@/lib/supabase';
 import { ToastContainer, toast } from '@/components/ui/Toast';
-import { Search, ChevronDown, ChevronUp, Clock, FileText, Eye, FileDown } from 'lucide-react';
+import { Search, ChevronDown, ChevronUp, Clock, FileText, Eye, FileDown, Trash2 } from 'lucide-react';
 import Image from 'next/image';
 import { Configuracion, CotizacionItemForm, Cliente } from '@/types';
 import dynamicImport from 'next/dynamic';
@@ -93,6 +93,21 @@ export default function HistorialPage() {
     setCotizaciones(prev =>
       prev.map(c => c.id === id ? { ...c, expanded: !c.expanded } : c)
     );
+  }
+
+  async function deleteCotizacion(id: string, numero: string) {
+    if (!confirm(`¿Estás seguro de que deseas eliminar la cotización ${numero}? Esta acción no se puede deshacer.`)) return;
+    
+    // Primero eliminar items (por si no hay cascada) y luego la cotización
+    await supabase.from('cotizacion_items').delete().eq('cotizacion_id', id);
+    const { error } = await supabase.from('cotizaciones').delete().eq('id', id);
+    
+    if (error) {
+      toast('Error al eliminar cotización', 'error');
+    } else {
+      toast(`Cotización ${numero} eliminada`, 'success');
+      setCotizaciones(prev => prev.filter(c => c.id !== id));
+    }
   }
 
   const filtered = cotizaciones.filter(c => {
@@ -311,6 +326,13 @@ export default function HistorialPage() {
 
                   {/* Botones acción — detenemos la propagación */}
                   <div style={{ display: 'flex', gap: 6 }} onClick={e => e.stopPropagation()}>
+                    <button
+                      className="btn btn-danger btn-sm"
+                      onClick={() => deleteCotizacion(cot.id, cot.numero_correlativo)}
+                      title="Eliminar cotización"
+                    >
+                      <Trash2 size={13} />
+                    </button>
                     <button
                       className="btn btn-preview btn-sm"
                       onClick={() => openPreview(cot)}
